@@ -1,76 +1,94 @@
 {
-    "name": "npm-helper",
-    "displayName": "NPM Helper",
-    "description": "Track changes on packages.json and show restore warning if need.",
-    "version": "1.0.1",
-    "publisher": "karanba",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/karanba/npm-helper.git"
-    },
-    "bugs": {
-        "url": "https://github.com/karanba/npm-helper/issues"
-    },
-    "homepage": "https://github.com/karanba/npm-helper/blob/master/README.md",
-    "icon": "images/logo.png",
-    "galleryBanner": {
-        "color": "#96DFFF",
-        "theme": "light"
-    },
-    "engines": {
-        "vscode": "^1.31.0"
-    },
-    "keywords": [
-        "npm",
-        "packages.json",
-        "install",
-        "npm install",
-        "restore"
+  "name": "npm-helper",
+  "displayName": "NPM Helper",
+  "description": "Track changes on packages.json and show restore warning if need.",
+  "version": "1.0.1",
+  "publisher": "karanba",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/karanba/npm-helper.git"
+  },
+  "bugs": {
+    "url": "https://github.com/karanba/npm-helper/issues"
+  },
+  "homepage": "https://github.com/karanba/npm-helper/blob/master/README.md",
+  "icon": "images/logo.png",
+  "galleryBanner": {
+    "color": "#96DFFF",
+    "theme": "light"
+  },
+  "engines": {
+    "vscode": "^1.31.0"
+  },
+  "keywords": [
+    "npm",
+    "packages.json",
+    "install",
+    "npm install",
+    "restore"
+  ],
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:extension.checkRestore"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": [
+      {
+        "type": "object",
+        "title": "NPM Helper",
+        "properties": {}
+      }
     ],
-    "categories": [
-        "Other"
-    ],
-    "activationEvents": [
-        "onCommand:extension.checkRestore"
-    ],
-    "main": "./extension.js",
-    "contributes": {
-        "configuration": [{
-            "type": "object",
-            "title": "NPM Helper",
-            "properties": {}
-        }],
-        "commands": [{
-                "command": "extension.checkRestore",
-                "title": "Check npm packages",
-                "category": "npm"
-            }
-        ],
-        "menus": {
-            "explorer/context": [{
-                    "when": "",
-                    "command": "extension.checkRestore",
-                    "group": "npm"
-                }
-            ]
-        },
-        "keybindings": [{
-                "command": "extension.checkRestore",
-                "key": "shift+ctrl+r",
-                "mac": "shift+cmd+r",
-                "when": ""
-            }
-        ]
+    "views": {
+      "explorer": [
+        {
+          "id": "dependencies",
+          "name": "Dependencies",
+          "when": ""
+        }
+      ]
     },
-    "scripts": {
-        "postinstall": "node ./node_modules/vscode/bin/install",
-        "test": "node ./node_modules/vscode/bin/test"
+    "commands": [
+      {
+        "command": "extension.checkRestore",
+        "title": "Check npm packages",
+        "category": "npm"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "when": "",
+          "command": "extension.checkRestore",
+          "group": "npm"
+        }
+      ]
     },
-    "devDependencies": {
-        "typescript": "^3.3.1",
-        "vscode": "^1.1.28",
-        "eslint": "^5.13.0",
-        "@types/node": "^10.12.21",
-        "@types/mocha": "^2.2.42"
-    }
+    "keybindings": [
+      {
+        "command": "extension.checkRestore",
+        "key": "ctrl+alt+r",
+        "mac": "cmd+alt+r",
+        "when": ""
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "test": "node ./node_modules/vscode/bin/test",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install"
+  },
+  "devDependencies": {
+    "@types/mocha": "^2.2.42",
+    "@types/node": "^10.12.21",
+    "eslint": "^5.13.0",
+    "tslint": "^5.13.1",
+    "typescript": "^3.3.3333",
+    "vscode": "^1.1.28"
+  }
 }

@@ -2,17 +2,29 @@ import * as vscode from 'vscode';
 import * as path from 'path';
 
 export class Dependency extends vscode.TreeItem {
+    private _folderName: string = '';
+
     constructor(
         public readonly label: string,
         private version: string,
         public readonly collapsibleState: vscode.TreeItemCollapsibleState,
+        public isExist: boolean,
+        public isSatisfied: boolean,
         public readonly command?: vscode.Command
     ) {
         super(label, collapsibleState);
     }
 
     get tooltip(): string {
-        return `${this.label}-${this.version}`;
+        if (this.isSatisfied && this.isExist) {
+            return `${this.label}-${this.version}`;
+        } else if (!this.isExist) {
+            return `${this.label}-${this.version} - missing module!`;
+        } else {
+            return `${this.label}-${this.version} - module version not satisfied!`;
+
+        }
+
     }
 
     get description(): string {
@@ -20,8 +32,8 @@ export class Dependency extends vscode.TreeItem {
     }
 
     iconPath = {
-        light: path.join(__filename, '..', '..', 'resources/svg/', 'light', 'folder.svg'),
-        dark: path.join(__filename, '..', '..', 'resources/svg/', 'dark', 'folder.svg')
+        light: path.join(__filename, '..', '..', 'resources/svg/', this.isExist && this.isSatisfied ? 'folder-ok.svg' : 'folder-empty.svg'),
+        dark: path.join(__filename, '..', '..', 'resources/svg/', this.isExist && this.isSatisfied ? 'folder-ok.svg' : 'folder-empty.svg')
     };
 
     contextValue = 'dependency';

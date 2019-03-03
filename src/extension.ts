@@ -8,23 +8,25 @@ const checkRestore = () => {
 	//console.log(packageJson),
 }
 
-/**
- * @param {vscode.ExtensionContext} context
- */
 export function activate(context: vscode.ExtensionContext) {
-	const dependencyNodeProvider = new DependencyNodeProvider();
-	vscode.window.registerTreeDataProvider('dependencies', dependencyNodeProvider);
+	const dependencyNodeProvider = new DependencyNodeProvider(vscode.workspace.rootPath);
 
+	let dependencyNodeProviderDisposal =
+		vscode.window.registerTreeDataProvider('dependencies',
+			dependencyNodeProvider);
+	context.subscriptions.push(dependencyNodeProviderDisposal);
 
-	let checkRestoreDisposable = vscode.commands.registerCommand('extension.checkRestore', (uri) => {
+	let refreshEntryDisposal =
+		vscode.commands.registerCommand('dependencies.refreshEntry',
+			() => { 
+				dependencyNodeProvider.refresh(); 
+			});
+	context.subscriptions.push(refreshEntryDisposal);
+
+	let checkRestoreDisposable = vscode.commands.registerCommand('dependencies.checkRestore', (uri) => {
 		checkRestore();
 	});
-
 	context.subscriptions.push(checkRestoreDisposable);
 }
 
-
-
-export function deactivate() { 
-
-}
+export function deactivate() { }

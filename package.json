@@ -1,6 +1,7 @@
 {
   "name": "npm-helper",
   "displayName": "NPM Helper",
+  "main": "./out/extension.js",
   "description": "Track changes on packages.json and show restore warning if need.",
   "version": "1.0.1",
   "publisher": "karanba",
@@ -31,9 +32,9 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:extension.checkRestore"
+    "workspaceContains:./package.json",
+    "onCommand:dependencies.refreshEntry"
   ],
-  "main": "./out/extension.js",
   "contributes": {
     "configuration": [
       {
@@ -53,23 +54,31 @@
     },
     "commands": [
       {
-        "command": "extension.checkRestore",
+        "command": "dependencies.checkRestore",
         "title": "Check npm packages",
         "category": "npm"
+      },
+      {
+        "command": "dependencies.refreshEntry",
+        "title": "Refresh",
+        "icon": {
+          "light": "resources/svg/folder.svg",
+          "dark": "resources/svg/folder.svg"
+        }
       }
     ],
     "menus": {
       "explorer/context": [
         {
           "when": "",
-          "command": "extension.checkRestore",
+          "command": "dependencies.checkRestore",
           "group": "npm"
         }
       ]
     },
     "keybindings": [
       {
-        "command": "extension.checkRestore",
+        "command": "dependencies.checkRestore",
         "key": "ctrl+alt+r",
         "mac": "cmd+alt+r",
         "when": ""
@@ -86,9 +95,14 @@
   "devDependencies": {
     "@types/mocha": "^2.2.42",
     "@types/node": "^10.12.21",
+    "@types/semver": "^5.5.0",
+    "compare-versions": "^3.4.0",
     "eslint": "^5.13.0",
     "tslint": "^5.13.1",
     "typescript": "^3.3.3333",
     "vscode": "^1.1.28"
+  },
+  "dependencies": {
+    "semver": "^5.6.0"
   }
 }

@@ -1,7 +1,7 @@
 # VSCode npm-helper
 A VS Code extension to check for npm package is exist and satisfied required version in package.json  
 
-[![](https://vsmarketplacebadge.apphb.com/version-short/karanba.npm-helper.svg)](https://marketplace.visualstudio.com/items?itemName=karanba.npm-helper-commands) [![GitHub](https://img.shields.io/github/license/karanba/npm-helper.svg)](https://raw.githubusercontent.com/karanba/npm-helper/master/LICENSE) [![GitHub repo size in bytes](https://img.shields.io/github/repo-size/karanba/npm-helper.svg)](https://github.com/karanba/npm-helper) [![GitHub](https://img.shields.io/github/issues/karanba/npm-helper.svg?style=flat-square)](https://github.com/karanba/npm-helper/issues) 
+[![](https://vsmarketplacebadge.apphb.com/version-short/karanba.npm-helper.svg)](https://marketplace.visualstudio.com/items?itemName=karanba.npm-helper) [![GitHub](https://img.shields.io/github/license/karanba/npm-helper.svg)](https://raw.githubusercontent.com/karanba/npm-helper/master/LICENSE) [![GitHub repo size in bytes](https://img.shields.io/github/repo-size/karanba/npm-helper.svg)](https://github.com/karanba/npm-helper) [![GitHub](https://img.shields.io/github/issues/karanba/npm-helper.svg?style=flat-square)](https://github.com/karanba/npm-helper/issues) 
 
 ## Overview
 

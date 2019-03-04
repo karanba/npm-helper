@@ -3,7 +3,7 @@
   "displayName": "NPM Helper",
   "main": "./out/extension.js",
   "description": "Track changes on packages.json and show restore warning if need.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "publisher": "karanba",
   "repository": {
     "type": "git",

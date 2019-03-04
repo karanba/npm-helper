@@ -58,7 +58,7 @@ export class DependencyNodeProvider implements vscode.TreeDataProvider<Dependenc
                     return new Dependency(moduleName, version,
                         vscode.TreeItemCollapsibleState.None,
                         true,
-                        isSatisfied, isDev);
+                        isSatisfied, isDev, 'module');
                 } else {
                     this.unSatisfiedModules.push(new ModuleInfo(moduleName, version, isDev));
 
@@ -66,7 +66,7 @@ export class DependencyNodeProvider implements vscode.TreeDataProvider<Dependenc
                         moduleName,
                         version,
                         vscode.TreeItemCollapsibleState.None,
-                        false, false, isDev,
+                        false, false, isDev, 'module',
                         {
                             command: 'extension.openPackageOnNpm',
                             title: '',
@@ -108,12 +108,12 @@ export class DependencyNodeProvider implements vscode.TreeDataProvider<Dependenc
                     var normalDeps = new Dependency('Normal', '', vscode.TreeItemCollapsibleState.Expanded,
                         this.nonExistingModules.find(x => !x.isDev) === undefined,
                         this.unSatisfiedModules.find(x => !x.isDev) === undefined,
-                        false);
+                        false, 'Sub');
 
                     var devDeps = new Dependency('Dev', '', vscode.TreeItemCollapsibleState.Expanded,
                         this.nonExistingModules.find(x => x.isDev) === undefined,
                         this.unSatisfiedModules.find(x => x.isDev) === undefined,
-                        false);
+                        false, 'Sub');
                     return Promise.resolve([normalDeps, devDeps]);
                 case 'Normal':
                     return Promise.resolve(this._dependecies.filter(x => !x.isDev));
@@ -127,8 +127,8 @@ export class DependencyNodeProvider implements vscode.TreeDataProvider<Dependenc
         } else {
             var root = new Dependency('All', 'Dependecies', vscode.TreeItemCollapsibleState.Expanded,
                 this.nonExistingModules.length < 1,
-                this.unSatisfiedModules.length < 1,
-                false);
+                this.unSatisfiedModules.length < 1,                
+                false, 'All');
             return Promise.resolve([root]);
         }
     }

@@ -11,10 +11,11 @@ export class Dependency extends vscode.TreeItem {
         public isExist: boolean,
         public isSatisfied: boolean,
         public isDev: boolean,
+        public contextValue: string,
         public readonly command?: vscode.Command
     ) {
         super(label, collapsibleState);
-        this.contextValue = 'module';
+        this.contextValue = contextValue;
     }
 
     get tooltip(): string {
@@ -42,6 +43,4 @@ export class Dependency extends vscode.TreeItem {
             this.isExist && this.isSatisfied ? 'folder-ok.svg' :
                 !this.isExist ? 'folder-mising.svg' : 'folder-empty.svg')
     };
-
-    contextValue = 'dependency';
 }

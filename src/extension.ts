@@ -2,6 +2,8 @@
 
 import * as vscode from 'vscode';
 import { DependencyNodeProvider } from './dependecyNodeProvider';
+import * as commandManager from './commandManager';
+import { Dependency } from './dependecy';
 
 const checkRestore = () => {
 	//var packageJson = require('./package.json');
@@ -18,10 +20,16 @@ export function activate(context: vscode.ExtensionContext) {
 
 	let refreshEntryDisposal =
 		vscode.commands.registerCommand('dependencies.refreshEntry',
-			() => { 
-				dependencyNodeProvider.refresh(); 
+			() => {
+				dependencyNodeProvider.refresh();
 			});
 	context.subscriptions.push(refreshEntryDisposal);
+
+	let goToHomeDisposal =
+		vscode.commands.registerCommand('dependencies.goToHome',
+			(item: Dependency) => {
+				commandManager.runCommand(`npm home ${item.label}`);
+			});
 
 	let checkRestoreDisposable = vscode.commands.registerCommand('dependencies.checkRestore', (uri) => {
 		checkRestore();

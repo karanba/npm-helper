@@ -3,7 +3,7 @@
   "displayName": "NPM Helper",
   "main": "./out/extension.js",
   "description": "Track changes on packages.json and show restore warning if need.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "karanba",
   "repository": {
     "type": "git",
@@ -60,11 +60,16 @@
       },
       {
         "command": "dependencies.refreshEntry",
-        "title": "Refresh",
+        "title": "npm helper: Refresh",
         "icon": {
           "light": "resources/svg/folder.svg",
           "dark": "resources/svg/folder.svg"
         }
+      },
+      {
+        "command": "dependencies.goToHome",
+        "title": "Go to homepage",
+        "category": "NPM Helper"        
       }
     ],
     "menus": {
@@ -74,6 +79,13 @@
           "command": "dependencies.checkRestore",
           "group": "npm"
         }
+      ],
+      "view/item/context": [
+          {
+              "group": "npm helper",
+              "command": "dependencies.goToHome",
+              "when": "viewItem == module"
+          }
       ]
     },
     "keybindings": [

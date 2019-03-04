@@ -28,8 +28,7 @@ Following commands are avalible in explorer/context, editor/context and editor/t
 * Compare revisions side-bye-side
 
 ## Available Commands
-* thg: Annotate File - THG
-* thg: Revision History - THG
+* npm helper: Refresh
 
 # Feedback & Contributing
 

@@ -13,6 +13,7 @@ export class Dependency extends vscode.TreeItem {
         public readonly command?: vscode.Command
     ) {
         super(label, collapsibleState);
+        this.contextValue = 'module';
     }
 
     get tooltip(): string {

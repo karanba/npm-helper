@@ -10,6 +10,7 @@ export class Dependency extends vscode.TreeItem {
         public readonly collapsibleState: vscode.TreeItemCollapsibleState,
         public isExist: boolean,
         public isSatisfied: boolean,
+        public isDev: boolean,
         public readonly command?: vscode.Command
     ) {
         super(label, collapsibleState);
@@ -33,8 +34,13 @@ export class Dependency extends vscode.TreeItem {
     }
 
     iconPath = {
-        light: path.join(__filename, '..', '..', 'resources/svg/', this.isExist && this.isSatisfied ? 'folder-ok.svg' : 'folder-empty.svg'),
-        dark: path.join(__filename, '..', '..', 'resources/svg/', this.isExist && this.isSatisfied ? 'folder-ok.svg' : 'folder-empty.svg')
+        light: path.join(__filename, '..', '..', 'resources/svg/',
+            this.isExist && this.isSatisfied ? 'folder-ok.svg' :
+                !this.isExist ? 'folder-mising.svg' : 'folder-empty.svg'),
+
+        dark: path.join(__filename, '..', '..', 'resources/svg/',
+            this.isExist && this.isSatisfied ? 'folder-ok.svg' :
+                !this.isExist ? 'folder-mising.svg' : 'folder-empty.svg')
     };
 
     contextValue = 'dependency';

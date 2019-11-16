@@ -15,7 +15,7 @@ ext install karanba.npm-helper
 
 # Prerequisites
 
-You must hvae a package.json file under the root folder of your project.
+You must have a package.json file under the root folder of your project.
 
 ![Hg](images/sh1.png) 
 
@@ -25,7 +25,7 @@ Following commands are avalible in explorer/context, editor/context and editor/t
 * Open workbench 
 * Annotate file 
 * Show revision history
-* Compare revisions side-bye-side
+* Compare revisions side-by-side
 
 ## Available Commands
 * npm helper: Refresh
